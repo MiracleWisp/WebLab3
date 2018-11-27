@@ -9,10 +9,13 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"/>
+    <h:outputScript name="js/clock.js"/>
     <title>Welcome</title>
 </h:head>
 
 <h:body>
+    <div id="clock"/>
     <h:form>
         <h:commandButton id="next" action="index" value="NEXT"/>
     </h:form>
