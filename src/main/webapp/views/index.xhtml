@@ -11,6 +11,7 @@
 <h:head>
     <link rel="stylesheet" href='../resources/css/common.css'/>
     <link rel="stylesheet" href='../resources/css/index.css'/>
+    <h:outputScript name="js/draw_point.js"/>
     <title>S&amp;U — Main</title>
 </h:head>
 <h:body>
@@ -132,16 +133,17 @@
                 
             </div>
             <p:commandButton id="add_btn" value="Add"
-                             action="#{resultsTable.addPoint(formView.x, formView.y, formView.r)}"
+                             action="#{resultsView.addPoint(formView.x, formView.y, formView.r)}"
+                             oncomplete="draw_point(#{resultsView.newPoint.toString()})"
                              styleClass="ui-priority-primary">
             </p:commandButton>
         </h:form>
     </div>
 
     <div id="results_wrap" class="element">
-        <p:dataTable id="results_table" var="point" value="#{resultsTable.points}">
+        <p:dataTable id="results_table" var="point" value="#{resultsView.points}">
             <p:column headerText="Id">
-                <h:outputText value="#{resultsTable.points.indexOf(point)}"/>
+                <h:outputText value="#{resultsView.points.indexOf(point)}"/>
             </p:column>
             <p:column headerText="X">
                 <h:outputText value="#{point.x}"/>

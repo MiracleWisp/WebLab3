@@ -4,15 +4,16 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean(name = "resultsTable")
+@ManagedBean
 @ViewScoped
 public class ResultsView implements Serializable {
 
     private List<Point> points;
+
+    private Point newPoint;
 
     @PostConstruct
     public void init() {
@@ -22,9 +23,8 @@ public class ResultsView implements Serializable {
         points.add(p);
     }
 
-    public void addPoint(float userX, float userY, float userR) {
-        Point point = new Point(userX, userY, userR);
-
+    public int addPoint(float userX, float userY, float userR) {
+        newPoint = new Point(userX, userY, userR);
         int errCode;
         float[] right_Rs = {1f, 2f, 3f, 4f, 5f};
         float[] right_Xs = {-2.0f, -1.5f, -1.0f, -0.5f, 0.0f, 0.5f, 1.0f, 1.5f, 2.0f};
@@ -37,6 +37,8 @@ public class ResultsView implements Serializable {
             }
         }
 
+        if (errCode != 0) return errCode;
+
         errCode = 2; // wrong X
         for (float x : right_Xs) {
             if (x == userX) {
@@ -45,18 +47,29 @@ public class ResultsView implements Serializable {
             }
         }
 
+        if (errCode != 0) return errCode;
+
         if ((userY < -5) || (userY > 3))
             errCode = 3; // wrong Y
 
-        //Ну и тут что-то сделать с ними
+        if (errCode != 0) return errCode;
 
 
 
-        point.checkArea();
-        points.add(point);
+        newPoint.checkArea();
+        points.add(newPoint);
+        return errCode;
     }
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public Point getNewPoint() {
+        return newPoint;
+    }
+
+    public void setNewPoint(Point newPoint) {
+        this.newPoint = newPoint;
     }
 }

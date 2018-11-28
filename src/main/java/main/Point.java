@@ -22,6 +22,10 @@ public class Point {
         this.r = r;
     }
 
+    Point() {
+
+    }
+
     public float getX() {
         return x;
     }
@@ -75,5 +79,12 @@ public class Point {
 
     void checkArea() {
         this.success = (this.fits2() || this.fits3() || this.fits1());
+    }
+
+    public String toString() {
+        return "{\"x\":\"" + this.x + "\"," +
+                "\"y\":\"" + this.y + "\"," +
+                "\"r\":\"" + this.r + "\"," +
+                "\"success\":\"" + this.success + "\"}";
     }
 }
