@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <link rel="stylesheet" href='../resources/css/common.css'/>
@@ -106,23 +106,23 @@
         <h:form var="point">
             <div>
                 <h3>X: </h3>
-                <p:commandButton value="-2" name="user_X" class="x_btn"/>
-                <p:commandButton value="-1.5" name="user_X" class="x_btn"/>
-                <p:commandButton value="-1" name="user_X" class="x_btn"/>
-                <p:commandButton value="-0.5" name="user_X" class="x_btn"/>
-                <p:commandButton value="0" name="user_X" class="x_btn"/>
-                <p:commandButton value="0.5" name="user_X" class="x_btn"/>
-                <p:commandButton value="1" name="user_X" class="x_btn"/>
-                <p:commandButton value="1.5" name="user_X" class="x_btn"/>
-                <p:commandButton value="2" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(-2)}" value="-2" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(-1.5)}" value="-1.5" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(-1)}" value="-1" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(-0.5)}" value="-0.5" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(0)}" value="0" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(0.5)}" value="0.5" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(1)}" value="1" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(1.5)}" value="1.5" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsTable.setX(2)}" value="2" name="user_X" class="x_btn"/>
             </div>
             <div>
                 <h3>Y: </h3>
-                <p:inputText value="#{formView.y}"/>
+                <p:inputText value="#{resultsTable.y}"/>
             </div>
             <div>
                 <h3>R: </h3>
-                <p:selectOneRadio value="#{formView.r}">
+                <p:selectOneRadio value="#{resultsTable.r}">
                     <f:selectItem itemValue="1" itemLabel="1"/>
                     <f:selectItem itemValue="2" itemLabel="2"/>
                     <f:selectItem itemValue="3" itemLabel="3"/>
@@ -132,9 +132,8 @@
                 
             </div>
             <p:commandButton id="add_btn" value="Add"
-                             action="#{resultsTable.addPoint(formView.x, formView.y, formView.r)}"
-                             styleClass="ui-priority-primary">
-            </p:commandButton>
+                             action="#{resultsTable.addPoint}"
+                             styleClass="ui-priority-primary"/>
         </h:form>
     </div>
 
