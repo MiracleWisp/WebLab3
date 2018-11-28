@@ -15,32 +15,6 @@ public class ResultsView implements Serializable {
     private float y;
     private float r;
 
-    public float getX() {
-        System.out.println("X=" + this.x);
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-        System.out.println("X=" + this.x);
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
-    }
-
-    public float getR() {
-        return r;
-    }
-
-    public void setR(float r) {
-        this.r = r;
-    }
-
     private List<Point> points;
 
     private Point newPoint;
@@ -100,5 +74,31 @@ public class ResultsView implements Serializable {
 
     public void setNewPoint(Point newPoint) {
         this.newPoint = newPoint;
+    }
+
+    public float getX() {
+        System.out.println("X=" + this.x);
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+        System.out.println("X=" + this.x);
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getR() {
+        return r;
+    }
+
+    public void setR(float r) {
+        this.r = r;
     }
 }

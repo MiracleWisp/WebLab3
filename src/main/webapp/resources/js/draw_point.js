@@ -1,6 +1,8 @@
 window.r1 = 1;
 
 function draw_point(point) {
+    console.log(point);
+    point = JSON.parse(point);
     let plot = document.getElementById("svg_plot");
     let circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
     circle.setAttribute('cx', convertX(point.x));

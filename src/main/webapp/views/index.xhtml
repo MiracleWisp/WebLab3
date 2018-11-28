@@ -27,8 +27,8 @@
     plot_wrap-->
     <div id="content_wrap">
         <div id="plot_wrap" class="element">
-            <svg id="svg_plot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"
-                 onclick="plotClicked(evt)">
+            <svg id="svg_plot" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 300 300"><!--onclick="plotClicked(evt)"-->
                 <defs>
                     <style>
 
@@ -104,7 +104,7 @@
     </div>
 
     <div id="form_wrap" class="element">
-        <h:form var="point">
+        <h:form var="point" id="pointForm">
             <div>
                 <h3>X: </h3>
                 <p:commandButton action="#{resultsView.setX(-2)}" value="-2" name="user_X" class="x_btn"/>
@@ -130,12 +130,14 @@
                     <f:selectItem itemValue="4" itemLabel="4"/>
                     <f:selectItem itemValue="5" itemLabel="5"/>
                 </p:selectOneRadio>
-                
+
             </div>
             <p:commandButton id="add_btn" value="Add"
                              action="#{resultsView.addPoint}"
                              oncomplete="draw_point(#{resultsView.newPoint.toString()})"
-                             styleClass="ui-priority-primary"/>
+                             styleClass="ui-priority-primary">
+                <f:ajax execute="pointForm" render="results_table"/>
+            </p:commandButton>
         </h:form>
     </div>
 

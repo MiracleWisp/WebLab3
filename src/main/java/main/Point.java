@@ -60,7 +60,7 @@ public class Point {
 
     private boolean fits1() {
         return
-                (this.x <= this.r/2) &&
+                (this.x <= this.r / 2) &&
                         (this.x >= 0) &&
                         (this.y <= this.r) &&
                         (this.y >= 0);
@@ -68,7 +68,7 @@ public class Point {
     }
 
     private boolean fits2() {
-        if (this.y < 0 || this.x > 0 || this.x < -this.r/2 || this.y > this.r/2) return false;
+        if (this.y < 0 || this.x > 0 || this.x < -this.r / 2 || this.y > this.r / 2) return false;
         return this.y <= sqrt(pow(this.r / 2, 2) - pow(this.x, 2));
     }
 
