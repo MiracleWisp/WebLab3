@@ -2,6 +2,10 @@ body {
     margin: 0;
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 14px;
+
+    display: grid;
+    grid-row-gap: 30px;
+    justify-items: center;
 }
 
 #header {
@@ -12,15 +16,8 @@ body {
     color: #fefefe;
     font-size: 22px;
 
-    position: absolute;
-    top: 0;
-
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     justify-items: center;
-}
-
-#content {
-    margin-top: 42px;
 }
