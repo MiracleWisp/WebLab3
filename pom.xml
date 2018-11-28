@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
 
-    <name>JSF example</name>
+    <name>WebLab3</name>
     <packaging>war</packaging>
 
     <dependencies>
