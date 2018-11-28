@@ -20,6 +20,10 @@
         <div id="variant">892312</div>
     </div>
 
+    <!--по непонятным причинам form_wrap и results_wrap в браузере
+    заворачиваются в content-wrap (это и нужно), но если поместить
+    form_wrap и results_wrap в content_wrap здесь, они завернутся в
+    plot_wrap-->
     <div id="content_wrap">
         <div id="plot_wrap" class="element">
             <svg id="svg_plot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"
@@ -99,7 +103,7 @@
     </div>
 
     <div id="form_wrap" class="element">
-        <h:form>
+        <h:form var="point">
             <div>
                 <h3>X: </h3>
                 <p:commandButton value="-2" name="user_X" class="x_btn"/>
@@ -114,11 +118,11 @@
             </div>
             <div>
                 <h3>Y: </h3>
-                <p:inputText/>
+                <p:inputText value="#{formView.y}"/>
             </div>
             <div>
                 <h3>R: </h3>
-                <p:selectOneRadio>
+                <p:selectOneRadio value="#{formView.r}">
                     <f:selectItem itemValue="1" itemLabel="1"/>
                     <f:selectItem itemValue="2" itemLabel="2"/>
                     <f:selectItem itemValue="3" itemLabel="3"/>
@@ -127,6 +131,10 @@
                 </p:selectOneRadio>
                 
             </div>
+            <p:commandButton id="add_btn" value="Add"
+                             action="#{resultsTable.addPoint(formView.x, formView.y, formView.r)}"
+                             styleClass="ui-priority-primary">
+            </p:commandButton>
         </h:form>
     </div>
 
