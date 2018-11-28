@@ -1,0 +1,38 @@
+:root {
+    --figure-fill: aqua;
+    --header-background-dark: #2f383c;
+    --header-background-light: #f4f4f4;
+    --border: 1px solid #c8c8c8;
+    --font-color-light: #fefefe;
+    --font-color-dark: #333333;
+}
+
+body {
+    margin: 0;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 14px;
+
+    display: grid;
+    grid-row-gap: 30px;
+    justify-items: center;
+}
+
+#header {
+    height: 42px;
+    width: 100%;
+
+    background: var(--header-background-dark);
+    color: var(--font-color-light);
+    font-size: 22px;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+#content_wrap {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}

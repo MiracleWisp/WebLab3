@@ -9,6 +9,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+    <link rel="stylesheet" href='../resources/css/common.css'/>
     <link rel="stylesheet" href='../resources/css/start.css'/>
     <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <h:outputScript name="js/clock.js"/>
@@ -21,7 +22,7 @@
         <div id="name">Serdyukov &amp; Uchvatov</div>
         <div id="variant">892312</div>
     </div>
-    <div id="content">
+    <div id="content_wrap">
         <div id="clock"></div>
         <h:form id="next_form">
             <p:button id="next_btn" value="NEXT" outcome="index" styleClass="ui-priority-primary" />

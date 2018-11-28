@@ -1,23 +1,66 @@
-body {
-    margin: 0;
-    font-family: "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 14px;
-
-    display: grid;
-    grid-row-gap: 30px;
-    justify-items: center;
+#content_wrap {
+    grid-template: "a c" "b c";
+    grid-gap: 30px;
 }
 
-#header {
-    height: 42px;
+.element {
+    width: 350px;
+    padding: 15px;
+    border: var(--border);
+    border-radius: 5px;
+}
+
+#form_wrap {
+    grid-area: b;
+}
+
+#results_wrap {
+    align-self: start;
+    grid-area: c;
+}
+
+#results_table {
+    display: table;
     width: 100%;
+    border-collapse: collapse;
+}
 
-    background: #2f383c;
-    color: #fefefe;
-    font-size: 22px;
+tr {
+    border: var(--border);
+}
 
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
-    justify-items: center;
+td {
+   text-align: center;
+}
+
+.x_btn {
+    display: inline-block;
+}
+
+#plot_wrap {
+    grid-area: a;
+    height: 350px;
+    padding: 15px;
+    user-select: none;
+}
+
+#svg_plot {
+    cursor: cell;
+}
+
+.cls-1, .cls-3 {
+    fill: var(--figure-fill);
+}
+
+polygon, path, rect {
+    cursor: crosshair;
+}
+
+
+#svg_plot > circle {
+    cursor: pointer;
+}
+
+.cls-4:hover {
+    transform-origin: -30px -30px -30px;
 }

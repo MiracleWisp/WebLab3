@@ -1,38 +1,7 @@
-body {
-    margin: 0;
-    font-family: "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 14px;
-
-    display: grid;
-    grid-row-gap: 30px;
-    justify-items: center;
-}
-
-#header {
-    height: 42px;
-    width: 100%;
-
-    background: #2f383c;
-    color: #fefefe;
-    font-size: 22px;
-
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
-    justify-items: center;
-}
-
-#content {
+#content_wrap {
     width: 250px;
-
-    border: 1px solid #c8c8c8;
+    border: var(--border);
     border-radius: 5px;
-
-    background: white;
-
-    display: grid;
-    align-items: center;
-    justify-items: center;
 }
 
 #clock {
@@ -41,8 +10,8 @@ body {
 
     border-radius: 5px;
 
-    background: #f4f4f4;
-    color: #333333;
+    background: var(--header-background-light);
+    color: var(--font-color-dark);
     font-weight: 700;
     font-size: 20px;
 
