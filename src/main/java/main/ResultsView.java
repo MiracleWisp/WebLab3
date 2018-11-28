@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean(name = "resultsTable")
+@ManagedBean
 @SessionScoped
 public class ResultsView implements Serializable {
 
@@ -43,6 +43,8 @@ public class ResultsView implements Serializable {
 
     private List<Point> points;
 
+    private Point newPoint;
+
     @PostConstruct
     public void init() {
         points = new ArrayList<Point>();
@@ -51,9 +53,8 @@ public class ResultsView implements Serializable {
         points.add(p);
     }
 
-    public void addPoint() {
-        Point point = new Point(x, y, r);
-
+    public int addPoint() {
+        newPoint = new Point(x, y, r);
         int errCode;
         float[] right_Rs = {1f, 2f, 3f, 4f, 5f};
         float[] right_Xs = {-2.0f, -1.5f, -1.0f, -0.5f, 0.0f, 0.5f, 1.0f, 1.5f, 2.0f};
@@ -66,6 +67,8 @@ public class ResultsView implements Serializable {
             }
         }
 
+        if (errCode != 0) return errCode;
+
         errCode = 2; // wrong X
         for (float _x : right_Xs) {
             if (_x == x) {
@@ -74,19 +77,28 @@ public class ResultsView implements Serializable {
             }
         }
 
+        if (errCode != 0) return errCode;
+
         if ((y < -5) || (y > 3))
             errCode = 3; // wrong Y
 
-        //Ну и тут что-то сделать с ними
+        if (errCode != 0) return errCode;
 
 
-        point.checkArea();
-        points.add(point);
-        System.out.println(points.get(1).getX());
-        System.out.println(points.get(1).getR());
+        newPoint.checkArea();
+        points.add(newPoint);
+        return errCode;
     }
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public Point getNewPoint() {
+        return newPoint;
+    }
+
+    public void setNewPoint(Point newPoint) {
+        this.newPoint = newPoint;
     }
 }

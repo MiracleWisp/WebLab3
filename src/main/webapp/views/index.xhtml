@@ -11,6 +11,7 @@
 <h:head>
     <link rel="stylesheet" href='../resources/css/common.css'/>
     <link rel="stylesheet" href='../resources/css/index.css'/>
+    <h:outputScript name="js/draw_point.js"/>
     <title>S&amp;U — Main</title>
 </h:head>
 <h:body>
@@ -106,23 +107,23 @@
         <h:form var="point">
             <div>
                 <h3>X: </h3>
-                <p:commandButton action="#{resultsTable.setX(-2)}" value="-2" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsTable.setX(-1.5)}" value="-1.5" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsTable.setX(-1)}" value="-1" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsTable.setX(-0.5)}" value="-0.5" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsTable.setX(0)}" value="0" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsTable.setX(0.5)}" value="0.5" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsTable.setX(1)}" value="1" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsTable.setX(1.5)}" value="1.5" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsTable.setX(2)}" value="2" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(-2)}" value="-2" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(-1.5)}" value="-1.5" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(-1)}" value="-1" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(-0.5)}" value="-0.5" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(0)}" value="0" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(0.5)}" value="0.5" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(1)}" value="1" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(1.5)}" value="1.5" name="user_X" class="x_btn"/>
+                <p:commandButton action="#{resultsView.setX(2)}" value="2" name="user_X" class="x_btn"/>
             </div>
             <div>
                 <h3>Y: </h3>
-                <p:inputText value="#{resultsTable.y}"/>
+                <p:inputText value="#{resultsView.y}"/>
             </div>
             <div>
                 <h3>R: </h3>
-                <p:selectOneRadio value="#{resultsTable.r}">
+                <p:selectOneRadio value="#{resultsView.r}">
                     <f:selectItem itemValue="1" itemLabel="1"/>
                     <f:selectItem itemValue="2" itemLabel="2"/>
                     <f:selectItem itemValue="3" itemLabel="3"/>
@@ -132,15 +133,16 @@
                 
             </div>
             <p:commandButton id="add_btn" value="Add"
-                             action="#{resultsTable.addPoint}"
+                             action="#{resultsView.addPoint}"
+                             oncomplete="draw_point(#{resultsView.newPoint.toString()})"
                              styleClass="ui-priority-primary"/>
         </h:form>
     </div>
 
     <div id="results_wrap" class="element">
-        <p:dataTable id="results_table" var="point" value="#{resultsTable.points}">
+        <p:dataTable id="results_table" var="point" value="#{resultsView.points}">
             <p:column headerText="Id">
-                <h:outputText value="#{resultsTable.points.indexOf(point)}"/>
+                <h:outputText value="#{resultsView.points.indexOf(point)}"/>
             </p:column>
             <p:column headerText="X">
                 <h:outputText value="#{point.x}"/>
