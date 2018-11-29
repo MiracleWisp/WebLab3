@@ -108,19 +108,32 @@
         <h:form id="pointForm">
             <div>
                 <h3>X: #{resultsView.x}</h3>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-2)}" value="-2" name="user_X" class="x_btn"/>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-1.5)}" value="-1.5" name="user_X" class="x_btn"/>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-1)}" value="-1" name="user_X" class="x_btn"/>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-0.5)}" value="-0.5" name="user_X" class="x_btn"/>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(0)}" value="0" name="user_X" class="x_btn"/>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(0.5)}" value="0.5" name="user_X" class="x_btn"/>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(1)}" value="1" name="user_X" class="x_btn"/>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(1.5)}" value="1.5" name="user_X" class="x_btn"/>
-                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(2)}" value="2" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-2)}" value="-2" name="user_X"
+                                 class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-1.5)}" value="-1.5"
+                                 name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-1)}" value="-1" name="user_X"
+                                 class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-0.5)}" value="-0.5"
+                                 name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(0)}" value="0" name="user_X"
+                                 class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(0.5)}" value="0.5"
+                                 name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(1)}" value="1" name="user_X"
+                                 class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(1.5)}" value="1.5"
+                                 name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(2)}" value="2" name="user_X"
+                                 class="x_btn"/>
             </div>
             <div>
                 <h3>Y: </h3>
                 <p:inputText value="#{resultsView.y}"/>
+                <p:inputText id="number" value="#{resultsView.y}" label="Number" validatorMessage="Значение от -3 до 5">
+                    <f:validateDoubleRange minimum="-5" maximum="3"/>
+                </p:inputText>
+                <p:message for="number"/>
             </div>
             <div>
                 <h3>R: </h3>
@@ -133,13 +146,12 @@
                 </p:selectOneRadio>
 
             </div>
-            <p:commandButton id="add_btn" value="Add"
-                             styleClass="ui-priority-primary">
+            <p:commandButton id="add_btn" value="Add" styleClass="ui-priority-primary"
+                             update="pointForm" validateClient="true">
                 <f:ajax listener="#{resultsView.addPoint}" execute="pointForm" render="result_panel"/>
             </p:commandButton>
         </h:form>
     </div>
-
     <div id="results_wrap" class="element">
         <p:outputPanel id="result_panel">
             <p:dataTable id="results_table" var="point" value="#{resultsView.points}">
