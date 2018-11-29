@@ -12,6 +12,7 @@
     <link rel="stylesheet" href='../resources/css/common.css'/>
     <link rel="stylesheet" href='../resources/css/index.css'/>
     <h:outputScript name="js/draw_point.js"/>
+    <h:outputScript name="js/buttonSelection.js"/>
     <title>S&amp;U — Main</title>
 </h:head>
 <h:body>
@@ -106,16 +107,16 @@
     <div id="form_wrap" class="element">
         <h:form id="pointForm">
             <div>
-                <h3>X: </h3>
-                <p:commandButton action="#{resultsView.setX(-2)}" value="-2" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsView.setX(-1.5)}" value="-1.5" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsView.setX(-1)}" value="-1" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsView.setX(-0.5)}" value="-0.5" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsView.setX(0)}" value="0" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsView.setX(0.5)}" value="0.5" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsView.setX(1)}" value="1" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsView.setX(1.5)}" value="1.5" name="user_X" class="x_btn"/>
-                <p:commandButton action="#{resultsView.setX(2)}" value="2" name="user_X" class="x_btn"/>
+                <h3>X: #{resultsView.x}</h3>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-2)}" value="-2" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-1.5)}" value="-1.5" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-1)}" value="-1" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-0.5)}" value="-0.5" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(0)}" value="0" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(0.5)}" value="0.5" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(1)}" value="1" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(1.5)}" value="1.5" name="user_X" class="x_btn"/>
+                <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(2)}" value="2" name="user_X" class="x_btn"/>
             </div>
             <div>
                 <h3>Y: </h3>

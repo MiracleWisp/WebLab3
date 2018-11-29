@@ -36,3 +36,7 @@ body {
     align-items: center;
     justify-items: center;
 }
+
+.selected {
+    background-color: aqua;
+}
