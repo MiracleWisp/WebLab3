@@ -22,9 +22,6 @@ public class ResultsView implements Serializable {
     @PostConstruct
     public void init() {
         points = new ArrayList<Point>();
-        Point p = new Point(0.7f, 0.5f, 1);
-        p.checkArea();
-        points.add(p);
     }
 
     public int addPoint() {

@@ -8,7 +8,8 @@ function draw_point(point) {
     circle.setAttribute('cx', convertX(point.x));
     circle.setAttribute('cy', convertY(point.y));
     circle.setAttribute('r', "3");
-    circle.setAttribute("fill", +point.success ? "#00ff00" : "#ff0000");
+    let color = point.success ? "#00ff00" : "#ff0000";
+    circle.setAttribute("fill", color);
     circle.setAttribute("stroke-width", "1");
     circle.setAttribute("stroke", "black");
     // circle.onclick = circlePressed;

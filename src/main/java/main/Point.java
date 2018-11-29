@@ -85,6 +85,6 @@ public class Point {
         return "{\"x\":\"" + this.x + "\"," +
                 "\"y\":\"" + this.y + "\"," +
                 "\"r\":\"" + this.r + "\"," +
-                "\"success\":\"" + this.success + "\"}";
+                "\"success\":" + this.success + "}";
     }
 }
