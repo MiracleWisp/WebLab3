@@ -13,6 +13,7 @@
     <h:outputScript name="js/buttonSelection.js"/>
     <h:outputScript name="js/radioPressed.js"/>
     <h:outputScript name="js/init.js"/>
+    <h:outputScript name="js/plotClicked.js"/>
     <h:outputScript>pre_init(#{resultsView.r});</h:outputScript>
     <title>S&amp;U — Main</title>
 </h:head>
@@ -20,7 +21,7 @@
     <div id="header">
         <div id="back_wrap">
             <h:form id="back_form">
-                <p:button id="back_btn" value="⇐" outcome="start" styleClass="ui-priority-primary" />
+                <p:button id="back_btn" value="⇐" outcome="start" styleClass="ui-priority-primary"/>
             </h:form>
         </div>
         <div id="group">P3212</div>
@@ -86,9 +87,9 @@
             </h:form>
         </div>
         <div id="plot_outer_wrap" class="element">
-        <div id="plot_inner_wrap">
-            <ui:include src="/resources/plot.svg"/>
-        </div>
+            <div id="plot_inner_wrap">
+                <ui:include src="/resources/plot.svg"/>
+            </div>
         </div>
         <div id="results_wrap" class="element">
             <p:outputPanel id="result_panel">

@@ -35,17 +35,17 @@ function radio_pressed(r2) {
 }
 
 function convertXr(x, r) {
-    return 120 * x / r + 150;
+    return 160 * x / r + 200;
 }
 
 function convertYr(y, r) {
-    return 150 - 120 * y / r;
+    return 200 - 160 * y / r;
 }
 
 function convertXReverse(cx) {
-    return (cx - 150) * window.r1 / 120;
+    return (cx - 200) * window.r1 / 160;
 }
 
 function convertYReverse(cy) {
-    return (cy - 150) * window.r1 / -120;
+    return (cy - 200) * window.r1 / -160;
 }
