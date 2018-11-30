@@ -17,7 +17,7 @@ body {
     justify-items: center;
 }
 
-#header {
+#header, #footer {
     height: 42px;
     width: 100%;
 
