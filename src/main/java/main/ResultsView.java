@@ -3,6 +3,7 @@ package main;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class ResultsView implements Serializable {
     private float x;
     private float y;
     private float r;
+    private String sid;
 
     private List<Point> points;
 
@@ -25,6 +27,9 @@ public class ResultsView implements Serializable {
         r = 1;
         x = 0;
         y = 0;
+        FacesContext fctx = FacesContext.getCurrentInstance();
+        sid = fctx.getExternalContext().getSessionId(false);
+        System.out.println("sid: " + sid);
     }
 
     public int addPoint() {

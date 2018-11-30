@@ -18,11 +18,15 @@
 </h:head>
 <h:body>
     <div id="header">
+        <div id="back_wrap">
+            <h:form id="back_form">
+                <p:button id="back_btn" value="⇐" outcome="start" styleClass="ui-priority-primary" />
+            </h:form>
+        </div>
         <div id="group">P3212</div>
         <div id="name">Serdyukov &amp; Uchvatov</div>
         <div id="variant">892312</div>
     </div>
-
     <div id="content_wrap">
         <div id="form_wrap" class="element">
             <h:form id="pointForm">
@@ -73,19 +77,23 @@
 
                 </div>
                 <!--TODO: don't reset buttons selection when pressing add-->
-                <p:commandButton id="add_btn" value="ADD" styleClass="ui-priority-primary"
-                                 update="pointForm" validateClient="true">
-                    <f:ajax listener="#{resultsView.addPoint}" execute="pointForm" render="result_panel"/>
-                </p:commandButton>
+                <div id="add_btn">
+                    <p:commandButton value="ADD" styleClass="ui-priority-primary"
+                                     update="pointForm" validateClient="true">
+                        <f:ajax listener="#{resultsView.addPoint}" execute="pointForm" render="result_panel"/>
+                    </p:commandButton>
+                </div>
             </h:form>
         </div>
-        <div id="plot_wrap" class="element">
+        <div id="plot_outer_wrap" class="element">
+        <div id="plot_inner_wrap">
             <ui:include src="/resources/plot.svg"/>
+        </div>
         </div>
         <div id="results_wrap" class="element">
             <p:outputPanel id="result_panel">
                 <p:dataTable id="results_table" var="point" value="#{resultsView.points}">
-                    <p:column headerText="Id">
+                    <p:column headerText="ID">
                         <h:outputText value="#{resultsView.points.indexOf(point)}"/>
                     </p:column>
                     <p:column headerText="X">
@@ -97,13 +105,13 @@
                     <p:column headerText="R">
                         <h:outputText value="#{point.r}"/>
                     </p:column>
-                    <p:column headerText="Success">
+                    <p:column headerText="SUCCESS">
                         <h:outputText value="#{point.success}"/>
                     </p:column>
                 </p:dataTable>
                 <h:outputScript>
+                    post_init();
                     draw_point('#{resultsView.newPoint.toString()}');
-                    selectButtonX(document.getElementById("pointForm:x0btn"))
                 </h:outputScript>
             </p:outputPanel>
             <ui:repeat value="#{resultsView.points}" var="point">
@@ -113,7 +121,8 @@
             </ui:repeat>
         </div>
     </div>
-    <div id="footer"></div>
+    <div id="footer">
+    </div>
     <h:outputScript>post_init()</h:outputScript>
 </h:body>
 </html>

@@ -1,10 +1,33 @@
+:root {
+    --plot-wh: 400px;
+    --element-width: 500px;
+}
+
+#header {
+    grid-template-columns: 0.2fr 1fr 2fr 1fr;
+}
+
+#back_form {
+    margin-left: 10px;
+}
+
+#back_form > button {
+    font-size: 25px;
+    border-radius: 20px;
+}
+
+#back_form > button > span {
+    padding: 0 5px !important;
+}
+
 #content_wrap {
     grid-template: "a c" "b c";
-    grid-gap: 30px;
+    grid-gap: 10px;
+    align-items: start;
 }
 
 .element {
-    width: 400px;
+    width: var(--element-width);
     padding: 15px;
     border: var(--border);
     border-radius: 5px;
@@ -14,8 +37,17 @@
     grid-area: b;
 }
 
+#form_wrap > form {
+    display: grid;
+    grid-template-rows: 2fr 2fr 2fr 1fr;
+    grid-row-gap: 15px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
 #results_wrap {
-    align-self: start;
     grid-area: c;
 }
 
@@ -33,14 +65,23 @@ td {
    text-align: center;
 }
 
-.x_btn {
+.x_btn > span {
+    padding: 5px 5px;
     display: inline-block;
 }
 
-#plot_wrap {
+#add_btn {
+    padding: 5px 5px;
+
+}
+
+#plot_outer_wrap {
     grid-area: a;
-    height: 400px;
-    padding: 15px;
+}
+#plot_inner_wrap {
+    height: var(--plot-wh);
+    width: var(--plot-wh);
+    margin: auto;
     user-select: none;
 }
 

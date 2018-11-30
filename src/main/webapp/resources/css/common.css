@@ -7,13 +7,18 @@
     --font-color-dark: #333333;
 }
 
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
     margin: 0;
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 14px;
 
     display: grid;
-    grid-row-gap: 30px;
+    grid-row-gap: 15px;
     justify-items: center;
 }
 
@@ -29,6 +34,11 @@ body {
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     justify-items: center;
+}
+
+#footer {
+    height: 21px;
+    align-self: end;
 }
 
 #content_wrap {
