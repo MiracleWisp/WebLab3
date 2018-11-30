@@ -11,6 +11,9 @@
     <link rel="stylesheet" href='../resources/css/index.css'/>
     <h:outputScript name="js/draw_point.js"/>
     <h:outputScript name="js/buttonSelection.js"/>
+    <h:outputScript name="js/radioPressed.js"/>
+    <h:outputScript name="js/init.js"/>
+    <h:outputScript>pre_init(#{resultsView.r});</h:outputScript>
     <title>S&amp;U — Main</title>
 </h:head>
 <h:body>
@@ -21,10 +24,6 @@
     </div>
 
     <div id="content_wrap">
-        <div id="plot_wrap" class="element">
-            <ui:include src="/resources/plot.svg"/>
-        </div>
-
         <div id="form_wrap" class="element">
             <h:form id="pointForm">
                 <div>
@@ -39,7 +38,7 @@
                                      class="x_btn"/>
                     <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(-0.5)}" value="-0.5"
                                      name="user_X" class="x_btn"/>
-                    <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(0)}" value="0"
+                    <p:commandButton id="x0btn" onclick="selectButtonX(this)" action="#{resultsView.setX(0)}" value="0"
                                      name="user_X"
                                      class="x_btn"/>
                     <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(0.5)}" value="0.5"
@@ -63,8 +62,8 @@
                 </div>
                 <div>
                     <h3>R: </h3>
-                    <p:selectOneRadio value="#{resultsView.r}" required="true"
-                                      requiredMessage="R required">
+                    <p:selectOneRadio id="user_R" value="#{resultsView.r}" required="true"
+                                      requiredMessage="R required" onchange="radio_pressed(this.value)">
                         <f:selectItem itemValue="1" itemLabel="1"/>
                         <f:selectItem itemValue="2" itemLabel="2"/>
                         <f:selectItem itemValue="3" itemLabel="3"/>
@@ -79,6 +78,9 @@
                     <f:ajax listener="#{resultsView.addPoint}" execute="pointForm" render="result_panel"/>
                 </p:commandButton>
             </h:form>
+        </div>
+        <div id="plot_wrap" class="element">
+            <ui:include src="/resources/plot.svg"/>
         </div>
         <div id="results_wrap" class="element">
             <p:outputPanel id="result_panel">
@@ -101,10 +103,17 @@
                 </p:dataTable>
                 <h:outputScript>
                     draw_point('#{resultsView.newPoint.toString()}');
+                    selectButtonX(document.getElementById("pointForm:x0btn"))
                 </h:outputScript>
             </p:outputPanel>
+            <ui:repeat value="#{resultsView.points}" var="point">
+                <h:outputScript>
+                    draw_point('#{point.toString()}');
+                </h:outputScript>
+            </ui:repeat>
         </div>
     </div>
     <div id="footer"></div>
+    <h:outputScript>post_init()</h:outputScript>
 </h:body>
 </html>
