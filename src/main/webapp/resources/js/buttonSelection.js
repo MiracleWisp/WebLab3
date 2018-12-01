@@ -1,5 +1,11 @@
 function selectButtonX(elmt) {
-    $(".x_btn").removeClass("selected");
-    elmt.className = elmt.className + " selected";
-    return true;
+    // Возникли проблемы с поддержкой данной фичи:
+    // При нажатии кнопки add форматирование слетает
+    // При клике вне области форматирование иногда остается,
+    // А значение X другое
+    // При применении темы форматирование слетает
+    // Заменено просто выводом X в текстовой форме
+    // $(".x_btn").removeClass("selected");
+    // elmt.className = elmt.className + " selected";
+    // return true;
 }

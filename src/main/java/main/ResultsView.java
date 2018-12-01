@@ -1,6 +1,7 @@
 package main;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -48,19 +49,19 @@ public class ResultsView implements Serializable {
             }
         }
 
-        if (errCode != 0) return errCode;
 
         if ((x < -2) || (x > 2))
             errCode = 2; // wrong X
 
-        if (errCode != 0) return errCode;
 
         if ((y < -5) || (y > 3))
             errCode = 3; // wrong Y
 
-        if (errCode != 0) return errCode;
-        //TODO: не рисовать точку при неправильной валидации
-
+        if (errCode != 0) {
+            newPoint = null;
+            addMessage("You can't put point here");
+            return errCode;
+        }
 
         newPoint.checkArea();
         points.add(newPoint);
@@ -106,6 +107,11 @@ public class ResultsView implements Serializable {
     public void setR(float r) {
         r = fromContext(r, "r_value");
         this.r = r;
+    }
+
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     private float fromContext(float x, String name) {
