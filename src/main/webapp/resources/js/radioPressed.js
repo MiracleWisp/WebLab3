@@ -21,8 +21,8 @@ function radio_pressed(r2) {
     });
     toRemove.forEach(function (childNode) {
         // plot.removeChild(childNode);
-        childNode.setAttribute('cx', convertXr(convertXReverse(childNode.getAttribute('cx')), r2));
-        childNode.setAttribute('cy', convertYr(convertYReverse(childNode.getAttribute('cy')), r2));
+        childNode.setAttribute('cx', convertXr(childNode.getAttribute('cx'), r2));
+        childNode.setAttribute('cy', convertYr(childNode.getAttribute('cy'), r2));
         if (+childNode.ownR === r2) {
             childNode.setAttribute('fill-opacity', "1");
             childNode.setAttribute('stroke-opacity', "1");
@@ -35,17 +35,9 @@ function radio_pressed(r2) {
 }
 
 function convertXr(x, r) {
-    return 160 * x / r + 200;
+    return ((x - 150) * window.r1)/ r + 150;
 }
 
 function convertYr(y, r) {
-    return 200 - 160 * y / r;
-}
-
-function convertXReverse(cx) {
-    return (cx - 200) * window.r1 / 160;
-}
-
-function convertYReverse(cy) {
-    return (cy - 200) * window.r1 / -160;
+    return 150 + ((y - 150) * window.r1)/ r;
 }

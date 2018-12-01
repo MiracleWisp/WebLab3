@@ -4,4 +4,5 @@ function pre_init(r1) {
 
 function post_init() {
     selectButtonX(document.getElementById("pointForm:x0btn"));
+    radio_pressed(window.r1);
 }

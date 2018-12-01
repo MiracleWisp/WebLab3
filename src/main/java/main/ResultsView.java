@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @ManagedBean
 @SessionScoped
@@ -34,6 +35,7 @@ public class ResultsView implements Serializable {
 
     public int addPoint() {
         newPoint = new Point(x, y, r);
+//        System.out.println("x = ["+ x +"], " + "y = ["+ y +"], " + "r = ["+ r +"]");
         int errCode;
         float[] right_Rs = {1f, 2f, 3f, 4f, 5f};
         float[] right_Xs = {-2.0f, -1.5f, -1.0f, -0.5f, 0.0f, 0.5f, 1.0f, 1.5f, 2.0f};
@@ -48,13 +50,8 @@ public class ResultsView implements Serializable {
 
         if (errCode != 0) return errCode;
 
-        errCode = 2; // wrong X
-        for (float _x : right_Xs) {
-            if (_x == x) {
-                errCode = 0;
-                break;
-            }
-        }
+        if ((x < -2) || (x > 2))
+            errCode = 2; // wrong X
 
         if (errCode != 0) return errCode;
 
@@ -62,6 +59,7 @@ public class ResultsView implements Serializable {
             errCode = 3; // wrong Y
 
         if (errCode != 0) return errCode;
+        //TODO: не рисовать точку при неправильной валидации
 
 
         newPoint.checkArea();
@@ -84,13 +82,12 @@ public class ResultsView implements Serializable {
     }
 
     public float getX() {
-        System.out.println("X=" + this.x);
         return x;
     }
 
     public void setX(float x) {
+        x = fromContext(x, "x_value");
         this.x = x;
-        System.out.println("X=" + this.x);
     }
 
     public float getY() {
@@ -98,6 +95,7 @@ public class ResultsView implements Serializable {
     }
 
     public void setY(float y) {
+        y = fromContext(y, "y_value");
         this.y = y;
     }
 
@@ -106,6 +104,15 @@ public class ResultsView implements Serializable {
     }
 
     public void setR(float r) {
+        r = fromContext(r, "r_value");
         this.r = r;
+    }
+
+    private float fromContext(float x, String name) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        String x_value = params.get(name);
+        if (x_value != null) x = Float.parseFloat(x_value);
+        return x;
     }
 }

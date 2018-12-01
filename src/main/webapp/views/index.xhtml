@@ -30,6 +30,12 @@
     </div>
     <div id="content_wrap">
         <div id="form_wrap" class="element">
+            <h:form id="pseudoForm">
+                <p:remoteCommand name="remoteX" actionListener="#{resultsView.setX(-123)}"/>
+                <p:remoteCommand name="remoteY" actionListener="#{resultsView.setY(-123)}"/>
+                <p:remoteCommand name="remoteR" actionListener="#{resultsView.setR(-123)}"/>
+                <p:remoteCommand name="remoteAdd" actionListener="#{resultsView.addPoint()}" update="result_panel"/>
+            </h:form>
             <h:form id="pointForm">
                 <div>
                     <h3>X:</h3>
@@ -56,14 +62,18 @@
                     <p:commandButton onclick="selectButtonX(this)" action="#{resultsView.setX(2)}" value="2"
                                      name="user_X"
                                      class="x_btn"/>
+                    <!--<p:inputText id="user_X_hidden" value="#{resultsView.x}">-->
+                    <!--&lt;!&ndash;style="display: none"&ndash;&gt;-->
+
+                    <!--</p:inputText>-->
                 </div>
                 <div>
                     <h3>Y: </h3>
-                    <p:inputText id="number" value="#{resultsView.y}" label="Number"
-                                 validatorMessage="Значение от -3 до 5">
+                    <p:inputText id="user_Y" value="#{resultsView.y}" label="Number"
+                                 validatorMessage="Значение от -5 до 3">
                         <f:validateDoubleRange minimum="-5" maximum="3"/>
                     </p:inputText>
-                    <p:message for="number"/>
+                    <p:message for="user_Y"/>
                 </div>
                 <div>
                     <h3>R: </h3>
@@ -78,8 +88,8 @@
 
                 </div>
                 <!--TODO: don't reset buttons selection when pressing add-->
-                <div id="add_btn">
-                    <p:commandButton value="ADD" styleClass="ui-priority-primary"
+                <div id="add_btn_wrap">
+                    <p:commandButton id="add_btn" value="ADD" styleClass="ui-priority-primary"
                                      update="pointForm" validateClient="true">
                         <f:ajax listener="#{resultsView.addPoint}" execute="pointForm" render="result_panel"/>
                     </p:commandButton>

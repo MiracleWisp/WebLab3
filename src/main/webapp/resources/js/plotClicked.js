@@ -8,14 +8,18 @@ function plotClicked(event){
 
     function addPoint(x, y, r) {
         // TODO: backend call
-        let point = {
-            x: x,
-            y: y,
-            r: r,
-            success: true
-        };
-        let pointJ = JSON.stringify(point);
-        draw_point(pointJ);
+        // document.getElementById("pointForm:user_X_hidden").value = x;
+        remoteX([{name: 'x_value', value: x}]);
+        remoteY([{name: 'y_value', value: y}]);
+        remoteR([{name: 'r_value', value: r}]);
+        remoteAdd();
+    }
 
+    function convertXReverse(cx) {
+        return (cx - 200) * window.r1 / 160;
+    }
+
+    function convertYReverse(cy) {
+        return (cy - 200) * window.r1 / -160;
     }
 }

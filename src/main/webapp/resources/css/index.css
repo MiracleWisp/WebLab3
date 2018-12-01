@@ -21,13 +21,14 @@
 }
 
 #content_wrap {
-    grid-template: "a c" "b c";
+    grid-template: "a c" 430px "b c";
     grid-gap: 10px;
     align-items: start;
 }
 
 .element {
     width: var(--element-width);
+    background: var(--header-background-light);
     padding: 15px;
     border: var(--border);
     border-radius: 5px;
@@ -37,7 +38,7 @@
     grid-area: b;
 }
 
-#form_wrap > form {
+#pointForm {
     display: grid;
     grid-template-rows: 2fr 2fr 2fr 1fr;
     grid-row-gap: 15px;
@@ -70,7 +71,7 @@ td {
     display: inline-block;
 }
 
-#add_btn {
+#add_btn_wrap {
     padding: 5px 5px;
 
 }
@@ -86,6 +87,8 @@ td {
 }
 
 #svg_plot {
+    background: white;
+    border: var(--border);
     cursor: cell;
 }
 
