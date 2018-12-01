@@ -44,6 +44,15 @@
     <line class="cls-2" x1="270" y1="154" x2="270" y2="146"/>
     <line class="cls-2" x1="154" y1="30" x2="146" y2="30"/>
     <line class="cls-2" x1="30" y1="154" x2="30" y2="146"/>
+
+    <line id="frame-top" class="frame cls-2" x1="-90" y1="-210" x2="390" y2="-210"/>
+    <line id="frame-bot" class="frame cls-2" x1="-90" y1="750" x2="390" y2="750"/>
+    <line id="frame-left" class="frame cls-2" x1="-90" y1="-210" x2="-90" y2="750"/>
+    <line id="frame-right" class="frame cls-2" x1="390" y1="-210" x2="390" y2="750"/>
+    <!--<rect id="frame" x="30" y="30" width="240" height="240"/>-->
+
+
+
     <text class="cls-4" transform="translate(30 143)">-
         <tspan>1</tspan>
     </text>
