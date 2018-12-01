@@ -23,8 +23,8 @@ function radio_pressed(r2) {
     // move points
     toMove.forEach(function (childNode) {
         // plot.removeChild(childNode);
-        childNode.setAttribute('cx', convertXr(childNode.getAttribute('cx'), r2));
-        childNode.setAttribute('cy', convertYr(childNode.getAttribute('cy'), r2));
+        childNode.setAttribute('cx', convertXr(childNode.getAttribute('cx'), window.r1, r2));
+        childNode.setAttribute('cy', convertYr(childNode.getAttribute('cy'), window.r1, r2));
         if (+childNode.ownR === r2) {
             childNode.setAttribute('fill-opacity', "1");
             childNode.setAttribute('stroke-opacity', "1");
@@ -33,39 +33,27 @@ function radio_pressed(r2) {
             childNode.setAttribute('stroke-opacity', "0.5");
         }
     });
+    move_frame(window.r1, r2);
 
-    // move frame
+    window.r1 = r2;
+}
+
+function move_frame(r1, r2) {
     const top = document.getElementById("frame-top");
     const bot = document.getElementById("frame-bot");
     const left = document.getElementById("frame-left");
     const right = document.getElementById("frame-right");
-    // const frame = document.getElementById("frame");
 
     const top_Y = top.getAttribute('y1');
     const bot_Y = bot.getAttribute('y1');
     const left_X = left.getAttribute('x1');
     const right_X = right.getAttribute('x1');
 
-    // const leftX = frame.getAttribute('x');
-    // const topY = frame.getAttribute('y');
-    // const rightX = frame.getAttribute('width') + leftX;
-    // const botY = frame.getAttribute('height') + topY;
 
-
-    const top_Y_n = convertYr(top_Y, r2);
-    const bot_Y_n = convertYr(bot_Y, r2);
-    const left_X_n = convertXr(left_X, r2);
-    const right_X_n = convertXr(right_X, r2);
-
-    // const leftX_n = convertXr(leftX, r2);
-    // const topY_n = convertYr(topY, r2);
-    // const width_n = convertXr(rightX, r2) - leftX_n;
-    // const height_n = convertYr(botY, r2) - topY_n;
-
-    // frame.setAttribute('x', leftX_n);
-    // frame.setAttribute('y', topY_n);
-    // frame.setAttribute('width', width_n);
-    // frame.setAttribute('height', height_n);
+    const top_Y_n = convertYr(top_Y, r1, r2);
+    const bot_Y_n = convertYr(bot_Y, r1, r2);
+    const left_X_n = convertXr(left_X, r1, r2);
+    const right_X_n = convertXr(right_X, r1, r2);
 
     top.setAttribute('x1', left_X_n);
     top.setAttribute('x2', right_X_n);
@@ -86,14 +74,12 @@ function radio_pressed(r2) {
     right.setAttribute('x2', right_X_n);
     right.setAttribute('y1', top_Y_n);
     right.setAttribute('y2', bot_Y_n);
-
-    window.r1 = r2;
 }
 
-function convertXr(x, r) {
-    return ((x - 150) * window.r1)/ r + 150;
+function convertXr(x, r1, r2) {
+    return ((x - 150) * r1)/ r2 + 150;
 }
 
-function convertYr(y, r) {
-    return 150 + ((y - 150) * window.r1)/ r;
+function convertYr(y, r1, r2) {
+    return 150 + ((y - 150) * r1)/ r2;
 }

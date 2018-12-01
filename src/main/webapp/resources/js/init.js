@@ -3,6 +3,6 @@ function pre_init(r1) {
 }
 
 function post_init() {
-    selectButtonX(document.getElementById("pointForm:x0btn"));
+    move_frame(1, window.r1);
     radio_pressed(window.r1);
 }

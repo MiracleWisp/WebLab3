@@ -108,3 +108,9 @@ polygon, path, rect {
 .cls-4:hover {
     transform-origin: -30px -30px -30px;
 }
+
+.frame {
+    stroke: red;
+    stroke-width: 1px;
+    stroke-miterlimit: 10;
+}

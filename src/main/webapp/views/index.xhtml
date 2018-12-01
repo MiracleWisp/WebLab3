@@ -121,7 +121,7 @@
                     </p:column>
                 </p:dataTable>
                 <h:outputScript>
-                    post_init();
+                    selectButtonX(document.getElementById("pointForm:x0btn"));
                     draw_point('#{resultsView.newPoint.toString()}');
                 </h:outputScript>
             </p:outputPanel>
