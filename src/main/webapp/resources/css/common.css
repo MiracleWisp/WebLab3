@@ -47,6 +47,11 @@ body {
     justify-items: center;
 }
 
-.selected {
-    background-color: aqua;
+button > span {
+    background: none;
+    border-radius: 2px;
+}
+
+th, button {
+    background: var(--header-background-light) !important;
 }

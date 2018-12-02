@@ -13,11 +13,15 @@
 
 #back_form > button {
     font-size: 25px;
-    border-radius: 20px;
+    border-radius: 35px;
+    width: 35px;
+    height: 35px;
 }
 
 #back_form > button > span {
     padding: 0 5px !important;
+    border-radius: 20px;
+    text-shadow: none;
 }
 
 #content_wrap {
@@ -79,6 +83,7 @@ td {
 #plot_outer_wrap {
     grid-area: a;
 }
+
 #plot_inner_wrap {
     height: var(--plot-wh);
     width: var(--plot-wh);
@@ -113,4 +118,9 @@ polygon, path, rect {
     stroke: red;
     stroke-width: 1px;
     stroke-miterlimit: 10;
+}
+
+
+.selected {
+    background-color: aqua;
 }
