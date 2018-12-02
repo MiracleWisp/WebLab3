@@ -1,14 +1,23 @@
 package main;
 
+import org.postgresql.ds.PGConnectionPoolDataSource;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 @ManagedBean
 @SessionScoped
@@ -17,21 +26,44 @@ public class ResultsView implements Serializable {
     private float x;
     private float y;
     private float r;
-    private String sid;
+    private String sid = "kek";
 
     private List<Point> points;
 
     private Point newPoint;
 
+    private Connection dbConnection;
+
     @PostConstruct
     public void init() {
-        points = new ArrayList<Point>();
+        Properties props = new Properties();
+        final PGConnectionPoolDataSource dataSource = new PGConnectionPoolDataSource();
+        try {
+            //обращаемся к файлу и получаем данные
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.properties");
+            props.load(inputStream);
+
+            dataSource.setUser(props.getProperty("DB_USER"));
+            dataSource.setDatabaseName(props.getProperty("DB_NAME"));
+            dataSource.setPassword(props.getProperty("DB_PWD"));
+            dataSource.setServerName(props.getProperty("DB_HOST"));
+            dataSource.setPortNumber(Integer.parseInt(props.getProperty("DB_PORT")));
+
+            dbConnection = dataSource.getConnection();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         r = 1;
         x = 0;
         y = 0;
         FacesContext fctx = FacesContext.getCurrentInstance();
         sid = fctx.getExternalContext().getSessionId(false);
         System.out.println("sid: " + sid);
+        points = selectPoints();
     }
 
     public int addPoint() {
@@ -65,6 +97,11 @@ public class ResultsView implements Serializable {
 
         newPoint.checkArea();
         points.add(newPoint);
+        try {
+            insertPoint(newPoint);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         x = 0;
         y = 0;
         return errCode;
@@ -120,5 +157,32 @@ public class ResultsView implements Serializable {
         String x_value = params.get(name);
         if (x_value != null) x = Float.parseFloat(x_value);
         return x;
+    }
+
+    public ArrayList<Point> selectPoints() {
+        ArrayList<Point> points = new ArrayList<Point>();
+        try {
+            PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM points WHERE sid = ?");
+            statement.setString(1, sid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Point point = new Point(rs.getFloat("x"), rs.getFloat("y"), rs.getFloat("r"), rs.getBoolean("success"));
+                points.add(point);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return points;
+    }
+
+
+    private void insertPoint(Point point) throws SQLException {
+        PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO points VALUES (?, ?, ?, ?, ?)");
+        statement.setDouble(1, point.getX());
+        statement.setDouble(2, point.getY());
+        statement.setDouble(3, point.getR());
+        statement.setString(4, sid);
+        statement.setBoolean(5, point.isSuccess());
+        statement.execute();
     }
 }
