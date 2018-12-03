@@ -3,6 +3,7 @@ package main;
 import org.postgresql.ds.PGConnectionPoolDataSource;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -183,6 +184,13 @@ public class ResultsView implements Serializable {
         statement.setDouble(3, point.getR());
         statement.setString(4, sid);
         statement.setBoolean(5, point.isSuccess());
+        statement.execute();
+    }
+
+    @PreDestroy
+    private void deletePoints() throws  SQLException {
+        PreparedStatement statement = dbConnection.prepareStatement("DELETE * FROM points WHERE sid = ?");
+        statement.setString(1, sid);
         statement.execute();
     }
 }
